@@ -1,0 +1,12 @@
+<ul>
+  <% @lists.each do |list| %>
+    <li>
+      <%= link_to list_path(list) do %>
+        <%= list.title %>
+      <% end %>
+      <%= link_to list_path(list), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+        <i class="fa-solid fa-trash" style="color:rgb(134, 134, 134);"></i>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
