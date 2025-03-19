@@ -7,7 +7,22 @@
     <p><%= @book.author %></p>
     <p>Published on <%= @book.release_date.strftime("%b %d, %Y") %> | <%= @book.book_length %> pages</p>
   </div>
-  
+
+
+  <h2>Add this book to a list:</h2>
+  <%= form_with url:book_booklists_path(@book), method: :post do |f| %>
+    <%= hidden_field_tag :book_id, @book.id %>
+    <%= f.collection_select :list_id, @lists, :id, :title %>
+    <%= f.submit "Add to List" %>
+  <% end %>
+
+  <h2>Lists containing this book:</h2>
+  <ul>
+    <% @lists.each do |list| %>
+      <li><%= link_to list.title, list_path(list) %></li>
+    <% end %>
+  </ul>
+
   <div class="review-container">
     <h2>Reviews</h2>
     <% if @reviews.any? %>

@@ -5,13 +5,6 @@ class ListPolicy < ApplicationPolicy
   # code, beware of possible changes to the ancestors:
   # https://gist.github.com/Burgestrand/4b4bc22f31c8a95c425fc0e30d7ef1f5
 
-<<<<<<< HEAD
-  class Scope < ApplicationPolicy::Scope
-    # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
-=======
   def show?
     true
   end
@@ -19,16 +12,20 @@ class ListPolicy < ApplicationPolicy
   def create?
     true
   end
-
-  def destroy?
-    record.user == user
-  end
-
+  
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
+    # def resolve
+    #   scope.all
+    # end
+
+
+    def destroy?
+      record.user == user
+    end
+
     def resolve
       scope.all
     end
->>>>>>> master
   end
 end

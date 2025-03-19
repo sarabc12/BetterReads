@@ -1,4 +1,17 @@
 <h2><%= @list.title %></h2>
 <p><%= @list.description %></p>
-<p><%= @list.date %></p>
+<p><%= @list.date.strftime("%a %b %e at %l:%M %p") %></p>
+<h3>Books in this List:</h3>
+<% if @books.any? %>
+  <ul>
+    <% @booklists.each do |booklist| %>
+      <li><%= link_to booklist.book.title, book_path(booklist.book) %></li>
+      <%= link_to booklist_path(booklist), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this book from the list?" }, class: "text-danger" do %>
+        <i class="fa-solid fa-trash" style="color: rgb(134, 134, 134);"></i>
+      <% end %>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No books in this list yet.</p>
+<% end %>
 <%= button_to "Back to lists", lists_path, method: :get, class: "btn btn-outline-primary" %>
