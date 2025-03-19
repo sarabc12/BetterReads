@@ -1,0 +1,13 @@
+<h1>Search Results</h1>
+
+<% if @books.any? %>
+  <ul>
+    <% @books.each do |book| %>
+      <li>
+        <strong><%= link_to book.title, book_path(book) %></strong> by <%= book.author %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No books found, try again </p>
+<% end %>
