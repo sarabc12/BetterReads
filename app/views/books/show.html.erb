@@ -22,15 +22,20 @@
   </ul>
 
   <div class="review-container">
-    <h2>Reviews</h2>
+  <h2>Reviews</h2>
     <% if @reviews.any? %>
       <ul>
         <% @reviews.each do |review| %>
           <li>
-            <strong><%= review.user.name %>:</strong>
-            <p><%= review.description %></p>
             <p><strong>Rating:</strong> <%= review.rating %> / 5</p>
-            <p><strong>Reviewed on:</strong> <%= review.date.strftime("%b %d, %Y") %></p>
+            <strong><%= review.user.username %> <%= review.date.strftime("%b %d, %Y") %></strong>
+            <p><%= review.description %></p>
+
+            <% if current_user == review.user %>
+              <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                <i class="fa-solid fa-trash" style="color:rgb(255, 0, 8);"></i>
+              <% end %>
+            <% end %>
           </li>
         <% end %>
       </ul>
@@ -38,4 +43,5 @@
       <p>No reviews yet.</p>
     <% end %>
 </div>
+
 </div>
