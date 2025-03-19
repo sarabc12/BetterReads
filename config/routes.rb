@@ -11,8 +11,14 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :books, only: [:show, :search] do
     resources :reviews, only: [:index, :new, :create]
+    collection do
+      get 'search'
+    end
+    resources :booklists, only: [:create]
   end
   resources :reviews, only: [:destroy]
 
+  resources :booklists, only: [:destroy]
   resources :lists
+
 end

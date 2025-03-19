@@ -6,6 +6,8 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    @books = @list.books.includes(:booklists)
+    @booklists = @list.booklists
     authorize @list
   end
 
