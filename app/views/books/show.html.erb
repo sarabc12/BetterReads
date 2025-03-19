@@ -20,8 +20,9 @@
       <li><%= link_to list.title, list_path(list) %></li>
     <% end %>
   </ul>
+</div>
 
-  <div class="review-container">
+<div class="review-container">
   <h2>Reviews</h2>
     <% if @reviews.any? %>
       <ul>
@@ -44,4 +45,6 @@
     <% end %>
 </div>
 
+<div>
+<%= render "reviews/new" %>
 </div>
