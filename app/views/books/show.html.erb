@@ -1,28 +1,9 @@
 <div class="main-contaier">
-
   <div clasa="book-container">
     <%= image_tag @book.picture, alt: @book.title %>
     <h1><%= @book.title %></h1>
     <p><%= @book.description %></p>
     <p><%= @book.author %></p>
     <p>Published on <%= @book.release_date.strftime("%b %d, %Y") %> | <%= @book.book_length %> pages</p>
-  </div>
-  
-  <div class="review-container">
-    <h2>Reviews</h2>
-    <% if @reviews.any? %>
-      <ul>
-        <% @reviews.each do |review| %>
-          <li>
-            <strong><%= review.user.name %>:</strong>
-            <p><%= review.description %></p>
-            <p><strong>Rating:</strong> <%= review.rating %> / 5</p>
-            <p><strong>Reviewed on:</strong> <%= review.date.strftime("%b %d, %Y") %></p>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p>No reviews yet.</p>
-    <% end %>
   </div>
 </div>

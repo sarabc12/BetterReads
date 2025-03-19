@@ -1,0 +1,8 @@
+<div class="review-form-container">
+  <h2>Write a Review</h2>
+  <%= simple_form_for [@book, @review] do |f| %>
+    <%= f.input :rating %>
+    <%= f.input :description %>
+    <%= f.submit %>
+  <% end %>
+</div>
