@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   def index
     @posts = policy_scope(Post)
+    @book = Book.find(params[:book_id])
+
   end
 
   def show
