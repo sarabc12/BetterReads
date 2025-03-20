@@ -9,7 +9,11 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @reviews = @book.reviews
     @review = Review.new
-    @lists = current_user.lists
+    if current_user
+      @lists = current_user.list
+    else
+      @lists = []
+    end
     authorize @book
   end
 
