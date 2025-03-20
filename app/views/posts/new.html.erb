@@ -1,0 +1,9 @@
+<div class="add-post">
+  <div class="post-form-container">
+    <h2>Add a Post</h2>
+    <%= simple_form_for [@book, @post] do |f| %>
+      <%= f.input :content %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
