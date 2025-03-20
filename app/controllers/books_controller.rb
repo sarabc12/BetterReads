@@ -10,7 +10,7 @@ class BooksController < ApplicationController
     @reviews = @book.reviews
     @review = Review.new
     if current_user
-      @lists = current_user.list
+      @lists = current_user.lists
     else
       @lists = []
     end
