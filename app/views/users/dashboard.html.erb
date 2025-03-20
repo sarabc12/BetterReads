@@ -1,0 +1,31 @@
+<h1>Your Reading Lists</h1>
+
+<% @lists.each do |list| %>
+  <h2><%= list.title %></h2>
+  <% if list.books.any? %>
+    <ul>
+      <% list.books.each do |book| %>
+        <li>
+          <%= link_to book.title, book_path(book) %>
+
+        <% if list.title == "Currently Reading" %>
+            <% bookread = book.bookreads.find_by(user: current_user) %>
+            <% if bookread.present? %>
+              <span> - Page <%= bookread.current_page || 0 %> of <%= bookread.book_length || book.book_length %></span>
+              <% if bookread.book_length.present? && bookread.current_page.present? %>
+                <span> (<%= ((bookread.current_page.to_f / bookread.book_length.to_f) * 100).round(1) %>%)</span>
+              <% end %>
+              <%= link_to "Update Progress", edit_bookread_path(bookread), class: "btn btn-primary" %>
+            <% else %>
+              <%= button_to "Start Tracking", bookreads_path(book_id: book.id), method: :post, class: "btn btn-success" %>
+            <% end %>
+          <% else %>
+            <%= button_to "Remove", remove_book_list_path(list, book_id: book.id), method: :delete, class: "btn btn-danger" %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No books yet</p>
+  <% end %>
+<% end %>
