@@ -30,11 +30,41 @@ class ListsController < ApplicationController
 
   def destroy
     @list = List.find(params[:id])
-    @list.destroy
     authorize @list
+
+    if ["Want to Read", "Currently Reading", "Read"].include?(@list.title)
+      flash[:alert] = "You cannot delete this list."
+      redirect_to lists_path
+      return
+    end
+
+    @list.destroy
     redirect_to lists_path, status: :see_other
   end
 
+  def add_book
+    @list = current_user.lists.find(params[:id])
+    @book = Book.find(params[:book_id])
+    @list.books << @book unless @list.books.include?(@book)
+
+
+    if @list.title == "Currently Reading"
+      bookread = current_user.bookreads.find_or_initialize_by(book: @book)
+      bookread.status = "currently reading"
+      bookread.book_length ||= @book.book_length
+      bookread.save!
+    end
+
+    redirect_to user_dashboard_path, notice: "#{@book.title} added to #{@list.title}!"
+  end
+
+  def remove_book
+    @list = current_user.lists.find(params[:id])
+    @book = Book.find(params[:book_id])
+    @list.books.delete(@book)
+
+    redirect_to user_dashboard_path, notice: "#{@book.title} removed from #{@list.title}."
+  end
 
   private
 
