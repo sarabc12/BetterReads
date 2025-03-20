@@ -1,6 +1,14 @@
 <h2><%= @list.title %></h2>
 <p><%= @list.description %></p>
-<p><%= @list.date.strftime("%a %b %e at %l:%M %p") %></p>
+
+<p>
+  <% if @list.date.present? %>
+    <%= @list.date.strftime("%a %b %e at %l:%M %p") %>
+  <% else %>
+    No date available
+  <% end %>
+</p>
+
 <h3>Books in this List:</h3>
 <% if @books.any? %>
   <ul>
@@ -14,4 +22,9 @@
 <% else %>
   <p>No books in this list yet.</p>
 <% end %>
+
+<% unless ["Want to Read", "Currently Reading", "Read"].include?(@list.title) %>
+  <%= button_to "Delete List", list_path(@list), method: :delete, class: "btn btn-danger mt-3", data: { confirm: "Are you sure you want to delete this list?" } %>
+<% end %>
+
 <%= button_to "Back to lists", lists_path, method: :get, class: "btn btn-outline-primary" %>

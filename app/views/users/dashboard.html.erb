@@ -1,0 +1,70 @@
+<div class="dashboard-container">
+  <!-- Info Section -->
+  <div class="user-info">
+    <h1>📖 Your Dashboard</h1>
+    <div class="profile-section">
+      <% if current_user.picture.present? %>
+        <%= image_tag current_user.picture, class: "profile-picture", alt: "#{current_user.username}'s profile picture" %>
+      <% else %>
+        <%= image_tag "https://t3.ftcdn.net/jpg/03/67/46/48/360_F_367464887_f0w1JrL8PddfuH3P2jSPlIGjKU2BI0rn.jpg", class: "profile-picture", alt: "Default profile picture" %>
+      <% end %>
+      <h2><%= current_user.username %></h2>
+      <% if current_user.bio.present? %>
+        <p><%= current_user.bio %></p>
+      <% else %>
+        <p><em>No bio added yet.</em></p>
+      <% end %>
+      <%= link_to "Edit Bio", edit_user_registration_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+
+  <!-- Lists Section -->
+  <div class="user-lists">
+    <h2>📚 Your Reading Lists</h2>
+    <% @lists.each do |list| %>
+      <div class="list-container">
+        <h3><%= link_to list.title, list_path(list), class: "list-title" %></h3>
+
+        <% unless ["Want to Read", "Currently Reading", "Read"].include?(list.title) %>
+          <%= button_to "Delete List", list_path(list), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "Are you sure you want to delete this list?" } %>
+        <% end %>
+
+        <% if list.books.any? %>
+          <ul>
+            <% list.books.each do |book| %>
+              <li>
+                <%= link_to book.title, book_path(book) %>
+
+                <% if list.title == "Currently Reading" %>
+                  <% bookread = book.bookreads.find_by(user: current_user) %>
+                  <% if bookread.present? %>
+                    <span> - Page <%= bookread.current_page || 0 %> of <%= bookread.book_length || book.book_length %></span>
+                    <% if bookread.book_length.present? && bookread.current_page.present? %>
+                      <span> (<%= ((bookread.current_page.to_f / bookread.book_length.to_f) * 100).round(1) %>%)</span>
+                    <% end %>
+
+                    <!-- ✅ Update Progress Button -->
+                    <%= link_to "Update Progress", edit_bookread_path(bookread), class: "btn btn-primary btn-sm" %>
+
+                    <!-- ✅ Fixed "Finished" Button: Passes Correct List ID -->
+                    <% currently_reading_list = current_user.lists.find_by(title: "Currently Reading") %>
+                    <%= button_to "Finished", move_to_read_list_path(currently_reading_list, book_id: book.id), method: :patch, class: "btn btn-success btn-sm", data: { confirm: "Mark this book as finished?" } %>
+
+                  <% else %>
+                    <%= button_to "Start Tracking", bookreads_path(book_id: book.id), method: :post, class: "btn btn-success btn-sm" %>
+                  <% end %>
+
+                <% else %>
+                  <%= button_to "Remove", remove_book_list_path(list, book_id: book.id), method: :delete, class: "btn btn-danger btn-sm" %>
+                <% end %>
+
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No books yet.</p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
