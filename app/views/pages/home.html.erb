@@ -1,6 +1,33 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<form action="<%= search_books_path %>" method="get">
-  <input type="text" name="query" placeholder="Search for books..." required>
-  <button type="submit">Search</button>
-</form>
+<div class="home-container">
+  <h1>Welcome to BetterReads 📚</h1>
+  <p>Discover new books, track your reading progress, and build your personal book lists.</p>
+
+  <!-- Search -->
+  <div class="search-section">
+    <h2>Find Your Next Read</h2>
+    <form action="<%= search_books_path %>" method="get">
+      <input type="text" name="query" placeholder="Search for books by title or author..." required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <!-- Info Section -->
+  <div class="how-it-works">
+    <h2>How It Works</h2>
+    <ul>
+      <li>🔍 Search for books you love.</li>
+      <li>📖 Add books to your reading lists.</li>
+      <li>✅ Track your progress as you read.</li>
+      <li>⭐ Leave reviews and discover recommendations.</li>
+    </ul>
+  </div>
+
+  <!-- New Users -->
+  <% unless user_signed_in? %>
+    <div class="cta">
+      <p>📢 Join our community to start tracking your books!</p>
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
+      <%= link_to "Log In", new_user_session_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>

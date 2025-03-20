@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     member do
       post 'add_book'
       delete 'remove_book'
+       patch 'move_to_read', to: 'lists#move_to_read'
     end
   end
   resources :bookreads, only: [:create, :edit, :update]

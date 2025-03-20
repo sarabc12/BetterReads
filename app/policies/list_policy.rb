@@ -17,10 +17,17 @@ class ListPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def remove_book?
+    record.user == user
+  end
+
+  def move_to_read?
+    record.user == user
+  end
+
   class Scope < ApplicationPolicy::Scope
-    # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.all
+      scope.where(user: user)
     end
   end
 end

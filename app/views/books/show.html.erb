@@ -14,12 +14,24 @@
     <%= f.submit "Add to List" %>
   <% end %>
 
-  <h2>Lists containing this book:</h2>
+  <h2>Create a New List:</h2>
+<%= form_with model: List.new, url: lists_path, method: :post do |f| %>
+  <%= f.text_field :title, placeholder: "List title", class: "form-control mb-2" %>
+  <%= f.text_field :description, placeholder: "Description (optional)", class: "form-control mb-2" %>
+  <%= f.submit "Create A New List", class: "btn btn-secondary" %>
+<% end %>
+
+  <h2>Lists Containing This Book:</h2>
+<% containing_lists = List.joins(:books).where(books: { id: @book.id }).distinct %>
+<% if containing_lists.any? %>
   <ul>
-    <% @lists.each do |list| %>
+    <% containing_lists.each do |list| %>
       <li><%= link_to list.title, list_path(list) %></li>
     <% end %>
   </ul>
+<% else %>
+  <p>This book has not been added to any lists yet.</p>
+<% end %>
 </div>
 
 <div class="review-container">
