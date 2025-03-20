@@ -1,4 +1,4 @@
-class ListPolicy < ApplicationPolicy
+class PostPolicy < ApplicationPolicy
   # NOTE: Up to Pundit v2.3.1, the inheritance was declared as
   # `Scope < Scope` rather than `Scope < ApplicationPolicy::Scope`.
   # In most cases the behavior will be identical, but if updating existing
@@ -10,10 +10,10 @@ class ListPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
+  end
 
-    def destroy?
-      record.user == user
-    end
+  def index?
+    true
   end
 
   def show?
@@ -21,6 +21,18 @@ class ListPolicy < ApplicationPolicy
   end
 
   def create?
+    true
+  end
+
+  def edit?
+    true
+  end
+
+  def update?
+    true
+  end
+
+  def destroy?
     true
   end
 end

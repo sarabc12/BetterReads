@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_18_115849) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_20_104042) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,26 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_18_115849) do
     t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_posts_on_book_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_replies_on_post_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "book_id", null: false
@@ -90,6 +110,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_18_115849) do
   add_foreign_key "bookreads", "books"
   add_foreign_key "bookreads", "users"
   add_foreign_key "lists", "users"
+  add_foreign_key "posts", "books"
+  add_foreign_key "posts", "users"
+  add_foreign_key "replies", "posts"
+  add_foreign_key "replies", "users"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
 end

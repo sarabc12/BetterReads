@@ -1,0 +1,20 @@
+<div class="posts-container">
+  <h1>All Posts</h1>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <strong><%= post.user.username %></strong>
+        <p><%= post.content %></p>
+        <% if current_user == post.user %>
+          <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+            <i class="fa-solid fa-trash" style="color:rgb(255, 0, 8);"></i>
+          <% end %>
+        <% end %>
+      </li>
+      
+      <div><%= render "posts/show", post:post %></div>
+
+    <% end %>
+  </ul>
+
+</div>

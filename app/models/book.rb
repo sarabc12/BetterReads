@@ -6,4 +6,5 @@ class Book < ApplicationRecord
   has_many :lists, through: :booklists
 
   has_many :reviews, dependent: :destroy
+  has_many :posts, dependent: :destroy
 end
