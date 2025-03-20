@@ -31,7 +31,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_20_111703) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "book_length"
     t.string "status"
     t.integer "current_page"
     t.index ["book_id"], name: "index_bookreads_on_book_id"
