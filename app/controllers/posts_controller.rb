@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   def index
     @posts = policy_scope(Post)
     @book = Book.find(params[:book_id])
-
   end
 
   def show
