@@ -1,11 +1,5 @@
 <div class="main-contaier">
-  <div clasa="book-container">
-    <%= image_tag @book.picture, alt: @book.title %>
-    <h1><%= @book.title %></h1>
-    <p><%= @book.description %></p>
-    <p><%= @book.author %></p>
-    <p>Published on <%= @book.release_date.strftime("%b %d, %Y") %> | <%= @book.book_length %> pages</p>
-    <%= link_to "View Posts", book_posts_path(@book), class: "btn btn-primary" %>
+  <div class="book-container">
     <% if @book.description.present? %>
       <p><%= @book.description %></p>
     <% end %>
@@ -28,7 +22,7 @@
     <% end %>
     <% end %>
   </div>
-
+  <%= link_to "View Posts", book_posts_path(@book), class: "btn btn-primary" %>
   <h2>Add this book to a list:</h2>
   <%= form_with url:book_booklists_path(@book), method: :post do |f| %>
     <%= hidden_field_tag :book_id, @book.id %>
