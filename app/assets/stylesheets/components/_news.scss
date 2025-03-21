@@ -1,6 +1,25 @@
 .news-section {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 100px 100px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 16px;
   width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 200px;
+}
+
+.card-body {
+  flex-grow: 1;
+}
+
+.card-title, .card-text {
+  margin: 0;
 }
