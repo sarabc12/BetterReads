@@ -19,6 +19,9 @@
           <%= @book.book_length %> pages
         <% end %>
       </p>
+      <% if @book.genre.present? %>
+      <p><%= @book.genre %></p>
+    <% end %>
     <% end %>
   </div>
 
