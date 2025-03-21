@@ -10,3 +10,65 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.search-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.search-input {
+  padding: 6px;
+  width: 250px;
+  font-size: 14px;
+}
+
+.genre-select {
+  padding: 6px;
+  width: 180px;
+  font-size: 14px;
+}
+
+.search-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.book-card {
+  width: 150px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  transition: transform 0.2s ease;
+}
+
+.book-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.book-card:hover {
+  transform: scale(1.03);
+}

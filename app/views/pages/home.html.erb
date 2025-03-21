@@ -4,12 +4,20 @@
 
   <!-- Search -->
   <div class="search-section">
-    <h2>Find Your Next Read</h2>
-    <form action="<%= search_books_path %>" method="get">
-      <input type="text" name="query" placeholder="Search for books by title or author..." required>
-      <button type="submit">Search</button>
-    </form>
-  </div>
+  <h2>Find Your Next Read</h2>
+  <%= form_with url: search_books_path, method: :get, local: true, html: { class: "search-form" } do %>
+    <input type="text" name="query" value="<%= params[:query] %>" placeholder="Search for books by title or author..." class="search-input" />
+
+    <%= select_tag :genre,
+        options_for_select(Book.distinct.pluck(:genre).compact.sort, params[:genre]),
+        include_blank: "All genres",
+        class: "genre-select" %>
+
+    <button type="submit" class="search-button">Search</button>
+  <% end %>
+</div>
+
+</div>
 
   <!-- Info Section -->
   <div class="how-it-works">
@@ -21,6 +29,25 @@
       <li>⭐ Leave reviews and discover recommendations.</li>
     </ul>
   </div>
+
+  <!-- Featured Books -->
+<div class="featured-books">
+  <h2>Featured Books</h2>
+  <% if @books.present? %>
+    <div class="book-list">
+      <% @books.each do |book| %>
+        <div class="book-card">
+          <%= link_to book_path(book) do %>
+            <%= image_tag book.picture, alt: book.title %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No featured books available.</p>
+  <% end %>
+</div>
+
 
   <!-- New Users -->
   <% unless user_signed_in? %>

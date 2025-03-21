@@ -1,0 +1,10 @@
+<h1>Edit Your Bio</h1>
+
+<%= form_with model: @user, url: update_bio_path, method: :patch, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :bio %><br>
+    <%= f.text_area :bio, rows: 5, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Update Bio", class: "btn btn-primary" %>
+<% end %>

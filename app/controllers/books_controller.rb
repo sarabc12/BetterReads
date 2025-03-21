@@ -20,10 +20,14 @@ class BooksController < ApplicationController
   def search
     authorize Book
 
+    @books = policy_scope(Book)
+
     if params[:query].present?
-      @books = policy_scope(Book).where("title ILIKE ? OR author ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
-    else
-      @books = policy_scope(Book)
+      @books = @books.where("title ILIKE :q OR author ILIKE :q", q: "%#{params[:query]}%")
+    end
+
+    if params[:genre].present?
+      @books = @books.where("genre ILIKE ?", "%#{params[:genre]}%")
     end
   end
 end
