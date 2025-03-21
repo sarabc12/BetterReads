@@ -31,3 +31,18 @@
     </div>
   <% end %>
 </div>
+
+<!-- News Section -->
+<h2>Latest News</h2>
+<div class="news-section" >
+      <% @news.each do |news_item| %>
+       <div class="card" style="width: 18rem;">
+          <%= image_tag news_item.picture, alt: news_item.title %>
+          <div class="card-body">
+            <h5 class="card-title"><%= news_item.title %></h5>
+            <p class="card-text"><%= truncate(news_item.content, length: 100) %></p>
+            <a href="#" class="btn btn-primary">Read More</a>
+         </div>
+       </div>
+      <% end %>
+</div>
