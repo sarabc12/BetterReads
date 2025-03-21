@@ -9,7 +9,7 @@ class RepliesController < ApplicationController
     authorize @reply
 
     if @reply.save
-      redirect_to book_path(@post.book), notice: "Reply added successfully."
+      redirect_to book_posts_path(@post.book), notice: "Reply added successfully."
     else
       render :new, status: :unprocessable_entity #'posts/show'
     end
@@ -19,7 +19,7 @@ class RepliesController < ApplicationController
     @reply = Reply.find(params[:id])
     @post = @reply.post
     @reply.destroy
-    redirect_to post_path(@post.book), notice: "Reply deleted successfully."
+    redirect_to book_posts_path(@post.book), notice: "Reply deleted successfully."
     authorize @reply
   end
 
