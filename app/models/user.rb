@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :posts, dependent: :destroy
   has_many :replies, dependent: :destroy
+  has_many :questions, dependent: :destroy
 
   has_many :bookreads
   has_many :books, through: :bookreads
