@@ -15,6 +15,7 @@ User.destroy_all
 
 require "json"
 require "open-uri"
+require "faker"
 
 subjects = ["fiction", "science", "history", "art", "biography", "technology", "philosophy", "music", "travel", "sports"]
 
@@ -92,3 +93,25 @@ booklist2 = Booklist.create(book: book2, list: list2)
 booklist3 = Booklist.create(book: book3, list: list3)
 booklist4 = Booklist.create(book: book4, list: list4)
 booklist5 = Booklist.create(book: book5, list: list5)
+
+images = [
+  "https://d32vymxhv9fq6b.cloudfront.net/images/books/large/97800/9780099466734.jpg",
+  "https://m.media-amazon.com/images/I/812wzoJvRLL._SL1396_.jpg",
+  "https://m.media-amazon.com/images/I/71fm0Ap7JcL._SL1360_.jpg",
+  "https://m.media-amazon.com/images/I/811iBn28JdL._SL1500_.jpg",
+  "https://m.media-amazon.com/images/I/81uEDUfKBZL._SL1500_.jpg",
+  "https://mczellbookwriting.com/blog/wp-content/uploads/2022/07/J.K.-Rowling.jpg",
+  "https://mczellbookwriting.com/blog/wp-content/uploads/2022/07/Stephen-King.png",
+  "https://mczellbookwriting.com/blog/wp-content/uploads/2022/07/Elif-Shafak.jpg",
+  "https://mczellbookwriting.com/blog/wp-content/uploads/2022/07/Kazuo-Ishiguro.jpg"
+]
+
+counter = 0
+10.times do
+  News.create!(
+    title: Faker::Book.title,
+    content: Faker::Lorem.paragraph(sentence_count: 5),
+    picture: images[counter]
+  )
+  counter += 1
+end

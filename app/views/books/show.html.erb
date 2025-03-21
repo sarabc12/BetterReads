@@ -2,6 +2,10 @@
   <div clasa="book-container">
     <%= image_tag @book.picture, alt: @book.title %>
     <h1><%= @book.title %></h1>
+    <p><%= @book.description %></p>
+    <p><%= @book.author %></p>
+    <p>Published on <%= @book.release_date.strftime("%b %d, %Y") %> | <%= @book.book_length %> pages</p>
+    <%= link_to "View Posts", book_posts_path(@book), class: "btn btn-primary" %>
     <% if @book.description.present? %>
       <p><%= @book.description %></p>
     <% end %>

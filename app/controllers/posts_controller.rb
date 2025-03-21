@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     authorize @post
 
     if @post.save
-      redirect_to book_path(@book), notice: "Post created successfully."
+      redirect_to book_posts_path(@book), notice: "Post created successfully."
     else
       render :new, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     authorize @post
     if @post.update(post_params)
-      redirect_to book_posts_path(@post), notice: 'Post updated successfully.'
+      redirect_to book_posts_path(@post.book), notice: 'Post updated successfully.'
     else
       Rails.logger.debug(@post.errors.full_messages)
       render :new, status: :unprocessable_entity
@@ -53,7 +53,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @book = @post.book
     @post.destroy
-    redirect_to book_path(@book), notice: "Post deleted successfully."
+    redirect_to book_posts_path(@book), notice: "Post deleted successfully."
     authorize @post
   end
 
