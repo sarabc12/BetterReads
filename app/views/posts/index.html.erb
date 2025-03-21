@@ -2,9 +2,7 @@
   <div class="post-book-container">
     <%= image_tag @book.picture, alt: @book.title %>
     <h1><%= @book.title %></h1>
-    <p><%= @book.description %></p>
-    <p><%= @book.author %></p>
-    <p>Published on <%= @book.release_date.strftime("%b %d, %Y") %> | <%= @book.book_length %> pages</p>
+    <%= link_to 'Create Post', new_book_post_path(@book), class: 'btn btn-primary' %>
   </div>
 
 
@@ -19,7 +17,7 @@
             <i class="fa-solid fa-trash" style="color:rgb(255, 0, 8);"></i>
           <% end %>
         <% end %>
-        <%= link_to 'Create Post', new_book_post_path(@book), class: 'btn btn-primary' %>
+        <%= link_to 'Edit', edit_book_post_path(@book, post), class: 'btn btn-warning' %>
       </li>
 
       <div><%= render "posts/show", post:post %></div>
