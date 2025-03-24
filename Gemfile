@@ -58,7 +58,7 @@ gem "ruby-openai"
 gem "solid_cable"
 gem "solid_queue"
 gem "neighbor"
-
+gem "cloudinary"
 
 group :development, :test do
   gem "dotenv-rails"

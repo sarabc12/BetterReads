@@ -9,7 +9,7 @@ class Book < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   has_neighbors :embedding
-  # after_create :set_embedding
+  after_create :set_embedding
 
   private
 

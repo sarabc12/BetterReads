@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def dashboard
+    @user = current_user
     @lists = current_user.lists
     @bookreads = current_user.bookreads.includes(:book)
 
@@ -48,6 +49,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def user_params
+    params.require(:user).permit(:photo)
+  end
 
   def bio_params
     params.require(:user).permit(:bio)
