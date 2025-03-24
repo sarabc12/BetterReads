@@ -3,10 +3,10 @@
   <div class="user-info">
     <h1>📖 Your Dashboard</h1>
     <div class="profile-section">
-      <% if current_user.picture.present? %>
-        <%= image_tag current_user.picture, class: "profile-picture", alt: "#{current_user.username}'s profile picture" %>
+      <% if current_user.photo.key.present? %>
+        <%= cl_image_tag current_user.photo.key, class: "profile-picture", alt: "#{current_user.username}'s profile picture", height: 300, width: 400, crop: :fill %>
       <% else %>
-        <%= image_tag "https://t3.ftcdn.net/jpg/03/67/46/48/360_F_367464887_f0w1JrL8PddfuH3P2jSPlIGjKU2BI0rn.jpg", class: "profile-picture", alt: "Default profile picture" %>
+        <%= image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXT05fi8hhDM3K386lZ1X5ohWlolSJV71FgMPySBO4XC9dcm5jD2AVAdd8gtRbgOQ-FdM&usqp=CAU", class: "profile-picture", alt: "Default profile picture" %>
       <% end %>
       <h2><%= current_user.username %></h2>
       <% if current_user.bio.present? %>
