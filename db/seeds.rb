@@ -25,12 +25,14 @@ subjects.each do |subject|
   respons = JSON.parse(book_serialized)
   books = respons["items"]
   books.each do |book|
+   next unless book["volumeInfo"]["imageLinks"]
+   
     Book.create!(
         title: book["volumeInfo"]["title"],
         description: book["volumeInfo"]["description"],
         genre: book["volumeInfo"]["categories"]&.join(", "),
         release_date: book["volumeInfo"]["publishedDate"],
-        picture: (book["volumeInfo"]["imageLinks"]["thumbnail"] if book["volumeInfo"]["imageLinks"]),
+        picture: (book["volumeInfo"]["imageLinks"]["thumbnail"]),
         book_length: book["volumeInfo"]["pageCount"],
         author: book["volumeInfo"]["authors"]&.join(", "),
       )
