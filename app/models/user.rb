@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :replies, dependent: :destroy
   has_many :questions, dependent: :destroy
+  has_one_attached :photo
 
   has_many :bookreads
   has_many :books, through: :bookreads

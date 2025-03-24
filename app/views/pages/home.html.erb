@@ -4,12 +4,19 @@
 
   <!-- Search -->
   <div class="search-section">
-    <h2>Find Your Next Read</h2>
-    <form action="<%= search_books_path %>" method="get">
-      <input type="text" name="query" placeholder="Search for books by title or author..." required>
-      <button type="submit">Search</button>
-    </form>
-  </div>
+  <h2>Find Your Next Read</h2>
+  <%= form_with url: search_books_path, method: :get, local: true, html: { class: "search-form" } do %>
+    <input type="text" name="query" value="<%= params[:query] %>" placeholder="Search for books by title or author..." class="search-input" />
+
+    <%= select_tag :genre,
+        options_for_select(Book.distinct.pluck(:genre).compact.sort, params[:genre]),
+        include_blank: "All genres",
+        class: "genre-select" %>
+
+    <button type="submit" class="search-button">Search</button>
+  <% end %>
+</div>
+
 
   <!-- Info Section -->
   <div class="how-it-works">
@@ -22,19 +29,28 @@
     </ul>
   </div>
 
-  <!-- New Users -->
-  <% unless user_signed_in? %>
-    <div class="cta">
-      <p>📢 Join our community to start tracking your books!</p>
-      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
-      <%= link_to "Log In", new_user_session_path, class: "btn btn-secondary" %>
+
+  <!-- Featured Books -->
+<div class="featured-books">
+  <h2>Featured Books</h2>
+  <% if @books.present? %>
+    <div class="book-list">
+      <% @books.each do |book| %>
+        <div class="book-card">
+          <%= link_to book_path(book) do %>
+            <%= image_tag book.picture, alt: book.title %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
+  <% else %>
+    <p>No featured books available.</p>
   <% end %>
 </div>
 
 <!-- News Section -->
-<h2>Latest News</h2>
 <div class="news-section" >
+    <h2>Latest News</h2>
       <% @news.each do |news_item| %>
        <div class="card" style="width: 18rem;">
           <%= image_tag news_item.picture, alt: news_item.title %>
@@ -45,4 +61,14 @@
          </div>
        </div>
       <% end %>
+</div>
+
+<!-- New Users -->
+ <% unless user_signed_in? %>
+  <div class="cta">
+    <p>📢 Join our community to start tracking your books!</p>
+    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-green" %>
+    <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-green" %>
+  </div>
+<% end %>
 </div>

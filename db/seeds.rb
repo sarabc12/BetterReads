@@ -25,12 +25,14 @@ subjects.each do |subject|
   respons = JSON.parse(book_serialized)
   books = respons["items"]
   books.each do |book|
+   next unless book["volumeInfo"]["imageLinks"]
+
     Book.create!(
         title: book["volumeInfo"]["title"],
         description: book["volumeInfo"]["description"],
         genre: book["volumeInfo"]["categories"]&.join(", "),
         release_date: book["volumeInfo"]["publishedDate"],
-        picture: (book["volumeInfo"]["imageLinks"]["thumbnail"] if book["volumeInfo"]["imageLinks"]),
+        picture: (book["volumeInfo"]["imageLinks"]["thumbnail"]),
         book_length: book["volumeInfo"]["pageCount"],
         author: book["volumeInfo"]["authors"]&.join(", "),
       )
@@ -103,7 +105,8 @@ images = [
   "https://mczellbookwriting.com/blog/wp-content/uploads/2022/07/J.K.-Rowling.jpg",
   "https://mczellbookwriting.com/blog/wp-content/uploads/2022/07/Stephen-King.png",
   "https://mczellbookwriting.com/blog/wp-content/uploads/2022/07/Elif-Shafak.jpg",
-  "https://mczellbookwriting.com/blog/wp-content/uploads/2022/07/Kazuo-Ishiguro.jpg"
+  "https://mczellbookwriting.com/blog/wp-content/uploads/2022/07/Kazuo-Ishiguro.jpg",
+  "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRKrbBM2II9HuO98VVv8XZL9y0B5k2C2jFrj_9SmcdWLSU7PZHFh4q88dFv2VVMUsKPLYih6PjTf5wIdhI8Kwwp5QOS2ju1d5rRoKWT1tMxJAAedQJGhbSj"
 ]
 
 counter = 0

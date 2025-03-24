@@ -3,10 +3,10 @@
   <div class="user-info">
     <h1>📖 Your Dashboard</h1>
     <div class="profile-section">
-      <% if current_user.picture.present? %>
-        <%= image_tag current_user.picture, class: "profile-picture", alt: "#{current_user.username}'s profile picture" %>
+      <% if current_user.photo.key.present? %>
+        <%= cl_image_tag current_user.photo.key, class: "profile-picture", alt: "#{current_user.username}'s profile picture", height: 300, width: 400, crop: :fill %>
       <% else %>
-        <%= image_tag "https://t3.ftcdn.net/jpg/03/67/46/48/360_F_367464887_f0w1JrL8PddfuH3P2jSPlIGjKU2BI0rn.jpg", class: "profile-picture", alt: "Default profile picture" %>
+        <%= image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXT05fi8hhDM3K386lZ1X5ohWlolSJV71FgMPySBO4XC9dcm5jD2AVAdd8gtRbgOQ-FdM&usqp=CAU", class: "profile-picture", alt: "Default profile picture" %>
       <% end %>
       <h2><%= current_user.username %></h2>
       <% if current_user.bio.present? %>
@@ -14,9 +14,22 @@
       <% else %>
         <p><em>No bio added yet.</em></p>
       <% end %>
-      <%= link_to "Edit Bio", edit_user_registration_path, class: "btn btn-primary" %>
+      <%= link_to "Edit Bio", edit_bio_path, class: "btn btn-primary" %>
     </div>
   </div>
+
+<!-- Stats Section -->
+  <div class="user-stats">
+  <h2>📊 Your Reading Stats</h2>
+  <ul>
+    <li><strong>Books read this year:</strong> <%= @books_read_this_year %></li>
+    <li><strong>Total pages read:</strong> <%= @total_pages_read %></li>
+    <li><strong>Currently reading:</strong> <%= @currently_reading_count %></li>
+    <% if @favourite_genre.present? %>
+      <li><strong>Favourite genre:</strong> <%= @favourite_genre %></li>
+    <% end %>
+  </ul>
+</div>
 
   <!-- Lists Section -->
   <div class="user-lists">
@@ -43,10 +56,8 @@
                       <span> (<%= ((bookread.current_page.to_f / bookread.book_length.to_f) * 100).round(1) %>%)</span>
                     <% end %>
 
-                    <!-- ✅ Update Progress Button -->
                     <%= link_to "Update Progress", edit_bookread_path(bookread), class: "btn btn-primary btn-sm" %>
 
-                    <!-- ✅ Fixed "Finished" Button: Passes Correct List ID -->
                     <% currently_reading_list = current_user.lists.find_by(title: "Currently Reading") %>
                     <%= button_to "Finished", move_to_read_list_path(currently_reading_list, book_id: book.id), method: :patch, class: "btn btn-success btn-sm", data: { confirm: "Mark this book as finished?" } %>
 
