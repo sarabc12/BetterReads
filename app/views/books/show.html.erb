@@ -1,26 +1,32 @@
 <div class="main-contaier">
   <div class="book-container">
-    <% if @book.description.present? %>
-      <p><%= @book.description %></p>
-    <% end %>
-    <% if @book.author.present? %>
-      <p><%= @book.author %></p>
-    <% end %>
-    <% if @book.release_date.present? || @book.book_length.present? %>
-      <p>
-        <% if @book.release_date.present? %>
-          Published on <%= @book.release_date.strftime("%b %d, %Y") %>
+    <div class="book-info">
+      <%= image_tag @book.picture, alt: @book.title, class: "book-image" %>
+      <div class="book-details">
+        <% if @book.description.present? %>
+          <p class="book-description"><%= @book.description %></p>
         <% end %>
-        <% if @book.release_date.present? && @book.book_length.present? %>
+        <% if @book.author.present? %>
+          <p class="book-author"><strong>Author:</strong> <%= @book.author %></p>
         <% end %>
-        <% if @book.book_length.present? %>
-          <%= @book.book_length %> pages
+        <% if @book.genre.present? %>
+          <p class="book-genre"><strong>Genre:</strong> <%= @book.genre %></p>
         <% end %>
-      </p>
-      <% if @book.genre.present? %>
-      <p><%= @book.genre %></p>
-    <% end %>
-    <% end %>
+        <% if @book.release_date.present? || @book.book_length.present? %>
+          <p class="book-meta">
+            <% if @book.release_date.present? %>
+              <strong>Published on:</strong> <%= @book.release_date.strftime("%b %d, %Y") %>
+            <% end %>
+            <% if @book.release_date.present? && @book.book_length.present? %>
+              |
+            <% end %>
+            <% if @book.book_length.present? %>
+              <strong>Length:</strong> <%= @book.book_length %> pages
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+    </div>
   </div>
   <%= link_to "View Posts", book_posts_path(@book), class: "btn btn-primary" %>
   <h2>Add this book to a list:</h2>
