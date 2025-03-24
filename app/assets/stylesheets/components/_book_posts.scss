@@ -23,7 +23,7 @@ body {
   background-color: #FAF1E6;
   padding: 30px 30px;
   border-radius: 8px;
-  box-shadow: 5px 5px 10px #594A47;
+  box-shadow: 2px 2px 8px #594A47;
   width: 100%;
 }
 
@@ -31,7 +31,6 @@ body {
 .book-image {
   max-width: 100%;
   height: auto;
-  border-radius: 10px;
   box-shadow: 5px 5px 10px #594A47;
 }
 
@@ -66,12 +65,13 @@ ul {
   padding: 15px;
   background-color: #FAF1E6;
   border-radius: 8px;
-  box-shadow: 5px 5px 10px #594A47;
+  box-shadow: 2px 2px 8px #594A47;
   width: 100%;
 }
 
 /* Style for delete icon */
 .delete-post {
+  font-size: 15px;
   margin-left: 10px;
   color: #99BC85;
   text-decoration: none;
@@ -84,6 +84,7 @@ ul {
 
 /* Style for edit icon */
 .edit-btn {
+  font-size: 15px;
   margin-left: 10px;
   color: #99BC85;
   text-decoration: none;
