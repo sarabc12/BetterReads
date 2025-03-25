@@ -14,7 +14,7 @@
   border-bottom: 1px solid lightgrey;
 }
 
-.list-container {
+.list-general {
   margin: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid lightgrey;
@@ -101,18 +101,24 @@
 }
 
 .user-review {
+  display: flex;
+  align-items: center; /* Aligns picture and text vertically */
+  gap: 15px; /* Adds space between the image and text */
   list-style: none;
-  margin-bottom: 16px;
+  padding: 10px;
 }
 
 .user-reviews {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-grow: 1; /* Allows the review text to take up the remaining space */
 }
 
 .review-content p {
+  font-size: 14px;
   margin: 2px 0;
-  margin-left: 5px;
-  font-size: 13px;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.review-content {
+  text-align: left;
 }

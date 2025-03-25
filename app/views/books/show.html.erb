@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div class="list-container">
+  <div class="list-general">
     <div class="add-to-list">
       <%= form_with url:book_booklists_path(@book), method: :post do |f| %>
         <%= hidden_field_tag :book_id, @book.id %>
@@ -64,11 +64,11 @@
         <ul>
           <% @reviews.each do |review| %>
             <li class="user-review">
+              <%= cl_image_tag review.user.photo.key, class: "profile-picture", alt: "#{review.user.username}'s profile picture", height: 70, width: 70, crop: :fill, style: "border-radius: 50%;" %>
               <div class="user-reviews">
-                <%= cl_image_tag review.user.photo.key, class: "profile-picture", alt: "#{review.user.username}'s profile picture", height: 70, width: 70, crop: :fill, style: "border-radius: 50%;" %>
                 <div class="review-content">
-                  <p>Review from <strong><%= review.user.username %></strong></p>
-                  <p><strong>Rating:</strong> <%= review.rating %> / 5</p>
+                  <p>Review from <%= review.user.username %></p>
+                  <p>Rating:<%= review.rating %> / 5</p>
                   <p><%= review.date.strftime("%b %d, %Y") %></p>
                 </div>
               </div>
