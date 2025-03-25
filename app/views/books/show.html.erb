@@ -63,11 +63,18 @@
       <% if @reviews.any? %>
         <ul>
           <% @reviews.each do |review| %>
+            <li class="user-review">
+              <div class="user-reviews">
+                <%= cl_image_tag review.user.photo.key, class: "profile-picture", alt: "#{review.user.username}'s profile picture", height: 70, width: 70, crop: :fill, style: "border-radius: 50%;" %>
+                <div class="review-content">
+                  <p>Review from <strong><%= review.user.username %></strong></p>
+                  <p><strong>Rating:</strong> <%= review.rating %> / 5</p>
+                  <p><%= review.date.strftime("%b %d, %Y") %></p>
+                </div>
+              </div>
+            </li>
             <li>
-              <p><strong>Rating:</strong> <%= review.rating %> / 5</p>
-              <strong><%= review.user.username %> <%= review.date.strftime("%b %d, %Y") %></strong>
               <p><%= review.description %></p>
-
               <% if current_user == review.user %>
                 <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
                   <i class="fa-solid fa-trash" style="color:rgb(255, 0, 8);"></i>

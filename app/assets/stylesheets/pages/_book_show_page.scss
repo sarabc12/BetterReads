@@ -1,6 +1,6 @@
 .main-container {
   font-family: 'Montserrat', sans-serif;
-  text-align: center;
+  text-align: left;
   padding: 30px;
   background-color: #FDFAF6;
   color: #594A47;
@@ -100,3 +100,19 @@
   color: #99BC85;
 }
 
+.user-review {
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+.user-reviews {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.review-content p {
+  margin: 2px 0;
+  margin-left: 5px;
+  font-size: 13px;
+}
