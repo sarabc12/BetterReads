@@ -4,4 +4,5 @@ class Bookread < ApplicationRecord
 
   validates :status, presence: true, inclusion: { in: ["want to read", "currently reading", "finished"] }
   validates :current_page, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
+  delegate :book_length, to: :book
 end
