@@ -8,21 +8,22 @@
 
 .profile-section {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   padding: 20px 0;
   border-bottom: 1px solid #ddd;
 }
 
 .avatar-image {
-  margin-right: 20px;
+  margin-right: 10px;
+  padding-left: 10px;
 }
 
 .avatar-image .profile-picture {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 .profile-info {
