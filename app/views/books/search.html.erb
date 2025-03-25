@@ -1,13 +1,15 @@
-<h1>Search Results</h1>
-
-<% if @books.any? %>
-  <ul>
-    <% @books.each do |book| %>
-      <li>
-        <strong><%= link_to book.title, book_path(book) %></strong> by <%= book.author %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No books found, try again </p>
-<% end %>
+<div class="list-container">
+  <% if @books.any? %>
+    <div class="books-list">
+      <% @books.each do |book| %>
+        <div class="books-card">
+          <%= link_to book_path(book) do %>
+            <%= image_tag book.picture, alt: book.title, class: "books-image" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No books found, try again.</p>
+  <% end %>
+</div>
