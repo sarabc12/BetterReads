@@ -37,6 +37,16 @@
     </div>
   </div>
 
+
+  <%# <%= link_to "View Posts", book_posts_path(@book), class: "btn btn-primary" %>
+  <h2>Add this book to a list:</h2>
+  <%= form_with url:book_booklists_path(@book), method: :post do |f| %>
+    <%= hidden_field_tag :book_id, @book.id %>
+    <%= f.collection_select :list_id, @lists, :id, :title %>
+    <%= f.submit "Add to List" %>
+  <% end %>
+
+
   <div class="list-container">
     <div class="add-to-list">
       <%= form_with url:book_booklists_path(@book), method: :post do |f| %>

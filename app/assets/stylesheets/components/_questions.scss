@@ -35,13 +35,13 @@
 
   .user-question {
     align-self: flex-start;
-    background: $blue;
-    color: $light-gray;
+    background: #FAF1E6;
+    color: black;
   }
 
   .ai-answer {
     align-self: flex-end;
-    background: $gray-200;
+    background: #99BC85;
   }
 
   #new_question {
@@ -50,6 +50,30 @@
 
     .form-group {
       margin-bottom: 0;
+    }
+
+    input[type="submit"] {
+      background-color: #99BC85;  /* Light green background */
+      color: rgb(0, 0, 0);  /* White text */
+      border: none;  /* Remove border */
+      border-radius: 6px;  /* Rounded corners */
+      padding: 10px 20px;  /* Padding inside the button */
+      font-size: 16px;  /* Font size */
+      cursor: pointer;  /* Pointer cursor on hover */
+      transition: background-color 0.3s ease, transform 0.3s ease;  /* Smooth transitions */
+      width: 100%;  /* Make the button fill the container */
+    }
+
+    /* Hover effect */
+    input[type="submit"]:hover {
+      background-color: #7A9F67;  /* Darker green when hovered */
+      transform: scale(1.05);  /* Slightly enlarge the button on hover */
+    }
+
+    /* Focus effect */
+    input[type="submit"]:focus {
+      outline: none;  /* Remove the focus outline */
+      box-shadow: 0 0 0 3px rgba(153, 188, 133, 0.4);  /* Add a subtle shadow on focus */
     }
   }
 }
