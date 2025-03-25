@@ -7,7 +7,6 @@ class BookreadsController < ApplicationController
     authorize @bookread
 
     @bookread.status = "currently reading"
-    @bookread.book_length ||= @book.book_length
     @bookread.current_page ||= 0
 
     if @bookread.save

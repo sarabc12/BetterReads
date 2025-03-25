@@ -1,35 +1,52 @@
 <div class="dashboard-container">
   <!-- Info Section -->
+  <%# <h1>📖 Your Dashboard</h1> %>
   <div class="user-info">
-    <h1>📖 Your Dashboard</h1>
     <div class="profile-section">
-      <% if current_user.photo.key.present? %>
-        <%= cl_image_tag current_user.photo.key, class: "profile-picture", alt: "#{current_user.username}'s profile picture", height: 300, width: 400, crop: :fill %>
-      <% else %>
-        <%= image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXT05fi8hhDM3K386lZ1X5ohWlolSJV71FgMPySBO4XC9dcm5jD2AVAdd8gtRbgOQ-FdM&usqp=CAU", class: "profile-picture", alt: "Default profile picture" %>
-      <% end %>
-      <h2><%= current_user.username %></h2>
-      <% if current_user.bio.present? %>
-        <p><%= current_user.bio %></p>
-      <% else %>
-        <p><em>No bio added yet.</em></p>
-      <% end %>
-      <%= link_to "Edit Bio", edit_bio_path, class: "btn btn-primary" %>
+     <div class="avatar-image">
+        <% if current_user.photo.key.present? %>
+          <%= cl_image_tag current_user.photo.key, class: "profile-picture", alt: "#{current_user.username}'s profile picture", height: 300, width: 400, crop: :fill %>
+        <% else %>
+          <%= image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXT05fi8hhDM3K386lZ1X5ohWlolSJV71FgMPySBO4XC9dcm5jD2AVAdd8gtRbgOQ-FdM&usqp=CAU", class: "profile-picture", alt: "Default profile picture" %>
+        <% end %>
+     </div>
+     <div class="profile-info">
+        <h2><%= current_user.username %></h2>
+        <% if current_user.bio.present? %>
+          <p><%= current_user.bio %></p>
+        <% else %>
+          <p><em>No bio added yet.</em></p>
+        <% end %>
+        <%= link_to edit_bio_path, class: "edit-button" do %>
+          <i class="fa-solid fa-pen" style="color:#99BC85";></i>
+        <% end %>
+     </div>
     </div>
   </div>
 
-<!-- Stats Section -->
+  <!-- Stats Section -->
   <div class="user-stats">
-  <h2>📊 Your Reading Stats</h2>
-  <ul>
-    <li><strong>Books read this year:</strong> <%= @books_read_this_year %></li>
-    <li><strong>Total pages read:</strong> <%= @total_pages_read %></li>
-    <li><strong>Currently reading:</strong> <%= @currently_reading_count %></li>
+    <h2>📊 Your Reading Stats</h2>
+    <div class="stat-item">
+      <strong>Books read this year:</strong>
+      <span><%= @books_read_this_year %></span>
+    </div>
+    <div class="stat-item">
+      <strong>Total pages read:</strong>
+      <span><%= @total_pages_read %></span>
+    </div>
+    <div class="stat-item">
+      <strong>Currently reading:</strong>
+      <span><%= @currently_reading_count %></span>
+    </div>
     <% if @favourite_genre.present? %>
-      <li><strong>Favourite genre:</strong> <%= @favourite_genre %></li>
+      <div class="stat-item">
+        <strong>Favourite genre:</strong>
+        <span><%= @favourite_genre %></span>
+      </div>
     <% end %>
-  </ul>
-</div>
+  </div>
+
 
   <!-- Lists Section -->
   <div class="user-lists">
@@ -46,7 +63,9 @@
           <ul>
             <% list.books.each do |book| %>
               <li>
-                <%= link_to book.title, book_path(book) %>
+                <%= link_to book_path(book) do %>
+                <%= image_tag book.picture, alt: book.title, class: "book-image" %>
+                <% end %>
 
                 <% if list.title == "Currently Reading" %>
                   <% bookread = book.bookreads.find_by(user: current_user) %>
