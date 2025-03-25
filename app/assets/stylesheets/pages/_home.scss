@@ -63,6 +63,25 @@
   background-color: darken(#99BC85, 10%);
 }
 
+.chat-button {
+  background-color: #99BC85;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+  padding: 12px 30px;
+  font-size: 14px;
+  display: inline-block;
+  width: auto;
+  text-align: center;
+}
+
+.chat-button:hover {
+  background-color: darken(#99BC85, 10%);
+}
+
 .how-it-works {
   background-color: #FAF1E6;
   padding: 20px;
@@ -102,8 +121,8 @@
 }
 
 .book-card img {
-  width: 120px;
-  height: auto;
+  width: 100%;
+  height: 180px;
   border-radius: 6px;
   box-shadow: 5px 5px 10px #594A47;
   transition: transform 0.2s ease;
