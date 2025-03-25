@@ -1,84 +1,88 @@
-<div class="main-contaier">
+<div class="main-container">
   <div class="book-container">
     <div class="book-info">
       <%= image_tag @book.picture, alt: @book.title, class: "book-image" %>
       <div class="book-details">
-        <% if @book.description.present? %>
-          <p class="book-description"><%= @book.description %></p>
+        <% if @book.title.present? %>
+          <h3><%= @book.title %></h3>
         <% end %>
         <% if @book.author.present? %>
-          <p class="book-author"><strong>Author:</strong> <%= @book.author %></p>
+          <p class="book-author"><%= @book.author %></p>
         <% end %>
         <% if @book.genre.present? %>
-          <p class="book-genre"><strong>Genre:</strong> <%= @book.genre %></p>
+          <p class="book-genre"><%= @book.genre %></p>
         <% end %>
         <% if @book.release_date.present? || @book.book_length.present? %>
           <p class="book-meta">
             <% if @book.release_date.present? %>
-              <strong>Published on:</strong> <%= @book.release_date.strftime("%b %d, %Y") %>
+              <%= @book.release_date.strftime("%b %d, %Y") %>
             <% end %>
             <% if @book.release_date.present? && @book.book_length.present? %>
               |
             <% end %>
             <% if @book.book_length.present? %>
-              <strong>Length:</strong> <%= @book.book_length %> pages
+              <%= @book.book_length %> pages
             <% end %>
           </p>
         <% end %>
       </div>
     </div>
+    <div class="description-container">
+      <div data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
+        <% if @book.description.present? %>
+          <p class="my-content" data-read-more-target="content"><%= @book.description %></p>
+          <button class="read-more-button" data-action="read-more#toggle">Read more</button>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <%= link_to "View Posts", book_posts_path(@book), class: "btn btn-primary" %>
-  <h2>Add this book to a list:</h2>
-  <%= form_with url:book_booklists_path(@book), method: :post do |f| %>
-    <%= hidden_field_tag :book_id, @book.id %>
-    <%= f.collection_select :list_id, @lists, :id, :title %>
-    <%= f.submit "Add to List" %>
-  <% end %>
 
-  <h2>Create a New List:</h2>
-  <%= form_with model: List.new, url: lists_path, method: :post do |f| %>
-    <%= f.text_field :title, placeholder: "List title", class: "form-control mb-2" %>
-    <%= f.text_field :description, placeholder: "Description (optional)", class: "form-control mb-2" %>
-    <%= f.submit "Create A New List", class: "btn btn-secondary" %>
-  <% end %>
+  <div class="list-container">
+    <div class="add-to-list">
+      <%= form_with url:book_booklists_path(@book), method: :post do |f| %>
+        <%= hidden_field_tag :book_id, @book.id %>
+        <%= f.collection_select :list_id, @lists, :id, :title %>
+        <%= f.submit "Add to List" %>
+      <% end %>
+    </div>
 
-  <h2>Lists Containing This Book:</h2>
-  <% containing_lists = List.joins(:books).where(books: { id: @book.id }).distinct %>
-    <% if containing_lists.any? %>
-      <ul>
-        <% containing_lists.each do |list| %>
-          <li><%= link_to list.title, list_path(list) %></li>
+    <div data-controller="toggle" class="mt-5">
+      <button class="add-new-list-button" data-action="click->toggle#fire">Add New List</button>
+      <div data-toggle-target="togglableElement" class="d-none">
+        <%= form_with model: List.new, url: lists_path, method: :post do |f| %>
+          <%= f.text_field :title, placeholder: "List title", class: "form-control mb-2" %>
+          <%= f.text_field :description, placeholder: "Description (optional)", class: "form-control mb-2" %>
+          <%= f.submit "Create A New List", class: "btn-submit-new-list" %>
         <% end %>
-      </ul>
-    <% else %>
-    <p>This book has not been added to any lists yet.</p>
-  <% end %>
-</div>
+      </div>
+    </div>
+  </div>
 
-<div class="review-container">
-  <h2>Reviews</h2>
-    <% if @reviews.any? %>
-      <ul>
-        <% @reviews.each do |review| %>
-          <li>
-            <p><strong>Rating:</strong> <%= review.rating %> / 5</p>
-            <strong><%= review.user.username %> <%= review.date.strftime("%b %d, %Y") %></strong>
-            <p><%= review.description %></p>
+  <div class="review-container">
+    <h2>Reviews</h2>
+      <% if @reviews.any? %>
+        <ul>
+          <% @reviews.each do |review| %>
+            <li>
+              <p><strong>Rating:</strong> <%= review.rating %> / 5</p>
+              <strong><%= review.user.username %> <%= review.date.strftime("%b %d, %Y") %></strong>
+              <p><%= review.description %></p>
 
-            <% if current_user == review.user %>
-              <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                <i class="fa-solid fa-trash" style="color:rgb(255, 0, 8);"></i>
+              <% if current_user == review.user %>
+                <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                  <i class="fa-solid fa-trash" style="color:rgb(255, 0, 8);"></i>
+                <% end %>
               <% end %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p>No reviews yet.</p>
-    <% end %>
-</div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No reviews yet.</p>
+      <% end %>
+  </div>
 
-<div>
-  <%= render "reviews/new" %>
+  <div>
+    <%= render "reviews/new" %>
+  </div>
+
 </div>
