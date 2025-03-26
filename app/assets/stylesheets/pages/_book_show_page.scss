@@ -1,0 +1,124 @@
+.main-container {
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  padding: 30px;
+  background-color: #FDFAF6;
+  color: #594A47;
+}
+
+.book-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.list-general {
+  margin: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid lightgrey;
+  text-align: left;
+}
+
+.add-to-list {
+  display: flex;
+}
+
+.add-new-list-button {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  color: #99BC85;
+  font-weight: bold;
+}
+
+.btn-submit-new-list {
+  background-color: #99BC85;
+  color: #FDFAF6;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid lightgray;
+  margin-bottom: 10px;
+}
+
+
+.add-to-list select,
+.add-to-list input[type="submit"] {
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid lightgray;
+}
+
+.add-to-list input[type="submit"] {
+  background-color: #99BC85;
+  color: #FDFAF6;
+}
+
+.read-more-button {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  color: #99BC85;
+}
+
+.description-container {
+  text-align: left;
+}
+
+.book-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.book-image {
+  max-width: 150px;
+  border-radius: 8px;
+}
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+}
+
+.book-description {
+  margin-top: 1rem;
+}
+
+
+.booklist-container {
+  margin: 20px;
+}
+
+.booklist-container a {
+  text-decoration: none;
+  color: #99BC85;
+}
+
+.user-review {
+  display: flex;
+  align-items: center; /* Aligns picture and text vertically */
+  gap: 15px; /* Adds space between the image and text */
+  list-style: none;
+  padding: 10px;
+}
+
+.user-reviews {
+  flex-grow: 1; /* Allows the review text to take up the remaining space */
+}
+
+.review-content p {
+  font-size: 14px;
+  margin: 2px 0;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.review-content {
+  text-align: left;
+}

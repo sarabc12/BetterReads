@@ -1,19 +1,22 @@
-<div class="one-post-container">
-
-   <h2>Reply</h2>
-   <%= simple_form_for [post, Reply.new] do |f| %>
-      <%= f.input :content %>
-      <%= f.submit "Reply" %>
-    <% end %>
-
-    <h3>All Replies</h3>
+<div class="one-post-container" >
+  <div class="reply-section">
+    <h3>Replies</h3>
     <ul>
       <% post.replies.each do |reply| %>
-        <li><%= reply.user.username %> - <%= reply.content %></li>
-          <%= link_to post_reply_path(post, reply), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-            <i class="fa-solid fa-trash" style="color:rgb(255, 0, 8);"></i>
+        <li><strong><%= post.user.username %></strong></li>
+        <li><%= reply.content %></li>
+          <%= link_to post_reply_path(post, reply), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-reply" do %>
+            <i class="fa-solid fa-trash" style="color:#99BC85;"></i>
           <% end %>
       <% end %>
     </ul>
+  </div>
 
+  <div class="reply-form">
+   <h2>Reply</h2>
+    <%= simple_form_for [post, Reply.new] do |f| %>
+      <%= f.input :content %>
+      <%= f.submit "Reply" %>
+    <% end %>
+  </div>
 </div>
