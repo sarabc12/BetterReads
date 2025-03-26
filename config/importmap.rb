@@ -9,3 +9,4 @@ pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "@popperjs/core", to: "popper.js", preload: true
 
 pin "@stimulus-components/read-more", to: "@stimulus-components--read-more.js" # @5.0.0
+pin "star-rating.js" # @4.3.1

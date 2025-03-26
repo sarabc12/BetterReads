@@ -6,6 +6,8 @@
   color: #594A47;
 }
 
+/*--------------------> BOOK*/
+
 .book-container {
   display: flex;
   flex-direction: column;
@@ -14,8 +16,52 @@
   border-bottom: 1px solid lightgrey;
 }
 
+.description-container {
+  text-align: left;
+}
+
+.book-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.book-image {
+  max-width: 150px;
+  border-radius: 8px;
+}
+
+.book-detailes p,h3{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+}
+
+.book-detailes p {
+  margin-bottom: 2px;
+}
+
+.book-detailes h3 {
+  margin-bottom: 3px;
+  font-weight: bold;
+}
+
+.book-description {
+  margin-top: 1rem;
+}
+
+.read-more-button {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  color: #99BC85;
+}
+
+/*--------------------->LIST*/
+
 .list-general {
-  margin: 20px;
+  margin-top: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid lightgrey;
   text-align: left;
@@ -57,39 +103,6 @@
   color: #FDFAF6;
 }
 
-.read-more-button {
-  background: none;
-  border: none;
-  text-decoration: underline;
-  color: #99BC85;
-}
-
-.description-container {
-  text-align: left;
-}
-
-.book-info {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.book-image {
-  max-width: 150px;
-  border-radius: 8px;
-}
-
-.book-details {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  padding: 10px;
-}
-
-.book-description {
-  margin-top: 1rem;
-}
-
 
 .booklist-container {
   margin: 20px;
@@ -100,16 +113,24 @@
   color: #99BC85;
 }
 
+
+/* ------------------->  REVIEWS*/
+
+
+.review-container {
+  margin-top: 20px;
+}
+
 .user-review {
   display: flex;
-  align-items: center; /* Aligns picture and text vertically */
-  gap: 15px; /* Adds space between the image and text */
+  align-items: center;
+  gap: 15px;
   list-style: none;
   padding: 10px;
 }
 
 .user-reviews {
-  flex-grow: 1; /* Allows the review text to take up the remaining space */
+  flex-grow: 1;
 }
 
 .review-content p {
@@ -119,6 +140,30 @@
   text-align: left;
 }
 
-.review-content {
+.my-content {
   text-align: left;
+}
+
+.username-review {
+  font-weight: bold;
+}
+
+.single-user-review {
+  margin: 0;
+}
+
+.single-user-review a {
+  margin-bottom: 23px;
+  text-decoration: none;
+}
+
+
+.review-form-container input[type="submit"] {
+  background-color: #99BC85;
+  color: #FDFAF6;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid lightgray;
+  margin-bottom: 10px;
 }
