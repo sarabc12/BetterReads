@@ -26,6 +26,7 @@
       <li>📖 Add books to your reading lists.</li>
       <li>✅ Track your progress as you read.</li>
       <li>⭐ Leave reviews and discover recommendations.</li>
+      <li> ⬇️ Chat to us below for personalised book reccomendations</li>
     </ul>
     <%= link_to "Chat with us", questions_path, class: "chat-button" %>
   </div>
@@ -54,7 +55,7 @@
 <div class="news-section" >
     <h2>Latest News</h2>
       <% @news.each do |news_item| %>
-       <div class="card" style="width: 18rem;">
+       <div class="card">
           <%= image_tag news_item.picture, alt: news_item.title %>
           <div class="card-body">
             <h5 class="card-title"><%= news_item.title %></h5>
