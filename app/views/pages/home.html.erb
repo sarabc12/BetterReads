@@ -3,10 +3,16 @@
   <p>Discover new books, track your reading progress, and build your personal book lists.</p>
 
   <!-- Search -->
-  <div class="search-section">
+<div class="search-section">
   <h2>Find Your Next Read</h2>
-  <%= form_with url: search_books_path, method: :get, local: true, html: { class: "search-form" } do %>
-    <input type="text" name="query" value="<%= params[:query] %>" placeholder="Search for books by title or author..." class="search-input" />
+  <%= form_with url: search_books_path, method: :get, local: true, html: { class: "search-form", autocomplete: "off" } do %>
+    <input
+      type="text"
+      name="query"
+      value="<%= params[:query] %>"
+      placeholder="Search for books by title or author..."
+      class="search-input"
+      autocomplete="off" />
 
     <%= select_tag :genre,
         options_for_select(Book.distinct.pluck(:genre).compact.sort, params[:genre]),
@@ -32,6 +38,7 @@
   </div>
 
 
+
   <!-- Featured Books -->
 <div class="featured-books">
   <h2>Featured Books</h2>
@@ -49,7 +56,7 @@
     <p>No featured books available.</p>
   <% end %>
 </div>
-<hr>
+
 
 <!-- News Section -->
 <div class="news-section" >
@@ -64,6 +71,8 @@
        </div>
       <% end %>
 </div>
+
+<hr>
 
 <!-- New Users -->
  <% unless user_signed_in? %>

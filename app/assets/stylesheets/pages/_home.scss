@@ -93,11 +93,11 @@
     list-style: none;
     padding-left: 0;
     margin-top: 15px;
-    text-align: center;
+    text-align: left;
 
     li {
       display: inline-block;
-      text-align: center;
+      text-align: left;
       margin-bottom: 10px;
       font-size: 16px;
       width: 100%;
@@ -132,7 +132,8 @@
 
     img {
       width: 120px;
-      height: auto;
+      height: 180px;
+      object-fit: cover;
       border-radius: 8px;
       box-shadow: 2px 2px 5px #594A47;
       transition: transform 0.3s ease;
@@ -169,7 +170,8 @@
   }
 
   .card {
-    width: 140px; // smaller width
+    width: 160px;
+    height: 240px;
     background-color: #FDFAF6;
     border-radius: 10px;
     overflow: hidden;
