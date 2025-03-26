@@ -2,7 +2,7 @@
   <div class="book-container">
     <div class="book-info">
       <%= image_tag @book.picture, alt: @book.title, class: "book-image" %>
-      <div class="book-details">
+      <div class="book-detailes">
         <% if @book.title.present? %>
           <h3><%= @book.title %></h3>
         <% end %>
@@ -67,17 +67,22 @@
               <%= cl_image_tag review.user.photo.key, class: "profile-picture", alt: "#{review.user.username}'s profile picture", height: 70, width: 70, crop: :fill, style: "border-radius: 50%;" %>
               <div class="user-reviews">
                 <div class="review-content">
-                  <p>Review from <%= review.user.username %></p>
-                  <p>Rating:<%= review.rating %> / 5</p>
+                  <p class="username-review"><%= review.user.username %></p>
+                  <p>
+                    <% review.rating.round.times do %>
+                      <i class="fa-solid fa-star" style="color: #FFB900;"></i>
+                    <% end %>
+                  </p>
+
                   <p><%= review.date.strftime("%b %d, %Y") %></p>
                 </div>
               </div>
             </li>
-            <li>
+            <li class="single-user-review">
               <p><%= review.description %></p>
               <% if current_user == review.user %>
                 <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-                  <i class="fa-solid fa-trash" style="color:rgb(255, 0, 8);"></i>
+                  <i class="fa-solid fa-trash" style="color: #594A47;"></i>
                 <% end %>
               <% end %>
             </li>

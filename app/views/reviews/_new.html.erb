@@ -2,7 +2,7 @@
   <div class="review-form-container">
     <h2>Add a Review</h2>
     <%= simple_form_for [@book, @review] do |f| %>
-      <%= f.input :rating, input_html: { min: '0', max: '5', step: '1' } %>
+      <%= f.input :rating, collection: (1..5).to_a, input_html: {data: {controller: "star-rating"}} %>
       <%= f.input :description %>
       <%= f.submit %>
     <% end %>
