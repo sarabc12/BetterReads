@@ -1,8 +1,8 @@
-<div class="list-container">
+<div class="main-lists-container">
   <% if @books.any? %>
-    <div class="books-list">
+    <div class="books-lists-card">
       <% @books.each do |book| %>
-        <div class="books-card">
+        <div class="books-card-container">
           <%= link_to book_path(book) do %>
             <%= image_tag book.picture, alt: book.title, class: "books-image" %>
           <% end %>
