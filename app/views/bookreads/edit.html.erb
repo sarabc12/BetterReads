@@ -1,10 +1,13 @@
-<h1>Update Reading Progress</h1>
+<div class="progress-container">
+  <h1>Update Reading Progress</h1>
 
-<%= form_with model: @bookread, url: bookread_path(@bookread), method: :patch do |f| %>
-  <label>Current Page:</label>
-  <%= f.number_field :current_page, min: 0, max: @bookread.book.book_length, class: "form-control" %>
+  <%= form_with model: @bookread, url: bookread_path(@bookread), method: :patch do |f| %>
+    <label>Current Page:</label>
+    <%= f.number_field :current_page, min: 0, max: @bookread.book.book_length, class: "form-control" %>
 
-  <%= f.submit "Save Progress", class: "btn btn-primary mt-2" %>
-<% end %>
-
-<%= link_to "Cancel", user_dashboard_path, class: "btn btn-secondary mt-2" %>
+    <div class="button-group">
+      <%= f.submit "Save Progress", class: "save-progress-btn" %>
+      <%= button_to "Cancel", user_dashboard_path, method: :get, class: "cancel-progress-btn" %>
+    </div>
+  <% end %>
+</div>
