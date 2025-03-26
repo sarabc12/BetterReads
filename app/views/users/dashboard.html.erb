@@ -26,17 +26,17 @@
 
   <!-- Stats Section -->
   <div class="user-stats">
-    <h2>🏆 Reading Journey</h2>
+    <h3>🏆 Reading Journey</h3>
     <div class="stat-item">
       <strong>Books devoured:</strong>
       <span><%= @books_read_this_year %></span>
     </div>
     <div class="stat-item">
-      <strong>Pages read:</strong>
+      <strong>Reading Miles Logged:</strong>
       <span><%= @total_pages_read %></span>
     </div>
     <div class="stat-item">
-      <strong>Currently reading:</strong>
+      <strong>Currently Avoiding Real Life:</strong>
       <span><%= @currently_reading_count %></span>
     </div>
     <% if @favourite_genre.present? %>
@@ -50,7 +50,7 @@
 
   <!-- Lists Section -->
   <div class="user-lists">
-    <h2>📚 Your Lists</h2>
+    <h3>📚 Your Lists</h3>
     <% @lists.each do |list| %>
       <div class="list-container">
         <h3><%= link_to list.title, list_path(list), class: "list-title" %></h3>
