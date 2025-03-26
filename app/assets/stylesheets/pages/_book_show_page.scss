@@ -102,14 +102,14 @@
 
 .user-review {
   display: flex;
-  align-items: center; /* Aligns picture and text vertically */
-  gap: 15px; /* Adds space between the image and text */
+  align-items: center;
+  gap: 15px;
   list-style: none;
   padding: 10px;
 }
 
 .user-reviews {
-  flex-grow: 1; /* Allows the review text to take up the remaining space */
+  flex-grow: 1;
 }
 
 .review-content p {

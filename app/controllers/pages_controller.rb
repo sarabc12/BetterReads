@@ -3,6 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @books = Book.order("RANDOM()").limit(6)
-    @news = News.order('RANDOM()').limit(4)
+    @news = News.order('RANDOM()').limit(2)
   end
 end
