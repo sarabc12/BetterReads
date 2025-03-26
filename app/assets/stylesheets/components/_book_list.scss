@@ -1,15 +1,14 @@
-.list-container {
+.main-lists-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   background-color: white;
 }
 
-.books-list {
+.books-lists-card {
   display: grid;
   grid-template-columns: repeat(3, 1fr);  /* I added this to have 3 books per row */
-  grid-gap: 16px;  /* I added this for spacing between books */
+  grid-gap: 12px;  /* I added this for spacing between books */
   width: 100%;
   margin: 30px auto;
   justify-items: center;
