@@ -34,11 +34,11 @@
 <div class="featured-books">
   <h2>Featured Books</h2>
   <% if @books.present? %>
-    <div class="book-list">
+    <div class="book-carousel">
       <% @books.each do |book| %>
-        <div class="book-card">
+        <div class="book-slide">
           <%= link_to book_path(book) do %>
-            <%= image_tag book.picture, alt: book.title %>
+            <%= image_tag(book.picture.presence || "no-cover.png", alt: book.title) %>
           <% end %>
         </div>
       <% end %>
