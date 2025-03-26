@@ -34,12 +34,12 @@ class ListsController < ApplicationController
 
     if ["Want to Read", "Currently Reading", "Read"].include?(@list.title)
       flash[:alert] = "You cannot delete this list."
-      redirect_to lists_path
+      redirect_to user_dashboard_path
       return
     end
 
     @list.destroy
-    redirect_to lists_path, status: :see_other
+    redirect_to user_dashboard_path, status: :see_other
   end
 
   def add_book
