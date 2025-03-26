@@ -64,7 +64,9 @@
         <ul>
           <% @reviews.each do |review| %>
             <li class="user-review">
-              <%= cl_image_tag review.user.photo.key, class: "profile-picture", alt: "#{review.user.username}'s profile picture", height: 70, width: 70, crop: :fill, style: "border-radius: 50%;" %>
+              <% if review.user.photo.attached? %>
+                <%= cl_image_tag review.user.photo.key, class: "profile-picture", alt: "#{review.user.username}'s profile picture", height: 70, width: 70, crop: :fill, style: "border-radius: 50%;" %>
+              <% end %>
               <div class="user-reviews">
                 <div class="review-content">
                   <p class="username-review"><%= review.user.username %></p>

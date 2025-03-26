@@ -15,4 +15,9 @@
 @import 'components/_book_list';
 @import 'components/_profile_page';
 @import "pages/home";
-@import "pages/book_show_page"
+@import "pages/book_show_page";
+@import "pages/list_show_page";
+
+body {
+  background-color: white;
+}
