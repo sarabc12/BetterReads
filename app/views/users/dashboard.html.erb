@@ -13,7 +13,7 @@
      <div class="profile-info">
         <h2><%= current_user.username %></h2>
         <% if current_user.bio.present? %>
-          <p><%= current_user.bio %> <%= link_to edit_bio_path, class: "edit-button" do %><i class="fa-solid fa-pen" style="color:#99BC85;"></i><% end %></p>
+          <p><%= current_user.bio %> <%= link_to edit_bio_path, class: "edit-button" do %><i class="fa-solid fa-pen" style="color: #99BC85;"></i><% end %></p>
         <% else %>
           <p><em>No bio added yet.</em></p>
         <% end %>
