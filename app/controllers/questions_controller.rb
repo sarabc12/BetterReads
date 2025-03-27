@@ -25,11 +25,11 @@ class QuestionsController < ApplicationController
      render :index, status: :unprocessable_entity
     end
   end
-  
+
 
   private
 
   def question_params
-    params.require(:question).permit(:user_question)
+    params.require(:question).permit(:user_question, :ai_answer)
   end
 end
