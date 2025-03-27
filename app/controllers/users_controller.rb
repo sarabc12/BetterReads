@@ -7,30 +7,19 @@ class UsersController < ApplicationController
     authorize current_user
 
     this_year = Time.current.beginning_of_year
+    @books_read_this_year = current_user.lists.find_by(title: "Read").books.size
+    @total_pages_read = current_user.lists.find_by(title: "Read").books.map {|book| book.book_length}.sum
 
-    @books_read_this_year = @bookreads
-      .where(status: "Finished!")
-      .where("end_date >= ?", this_year)
-      .count
-
-    @total_pages_read = @bookreads
-      .where(status: "Finished!")
-      .includes(:book)
-      .map { |br| br.book&.book_length.to_i }
-      .sum
-
-    @currently_reading_count = @bookreads
-      .where(status: "currently reading")
-      .count
+    @currently_reading_count = current_user.lists.find_by(title: "Currently Reading").books.size
 
     @favourite_genre = current_user.books
-      .joins(:bookreads)
-      .where(bookreads: { status: "Finished!" })
-      .group(:genre)
-      .order("COUNT(books.id) DESC")
-      .limit(1)
-      .pluck(:genre)
-      .first
+    .joins(:bookreads)
+    .where(bookreads: { status: "Finished!" })
+    .group(:genre)
+    .order("COUNT(books.id) DESC")
+    .limit(1)
+    .pluck(:genre)
+    .first
   end
 
   def edit_bio

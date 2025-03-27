@@ -8,7 +8,6 @@ class BookreadsController < ApplicationController
 
     @bookread.status = "currently reading"
     @bookread.current_page ||= 0
-
     if @bookread.save
       redirect_to user_dashboard_path, notice: "Tracking started for #{@book.title}!"
     else
