@@ -99,7 +99,7 @@
     <%= render "reviews/new" %>
   </div>
 
-  <%= button_to user_dashboard_path, method: :get, class: "back-to-profile-btn" do %>
+  <%= link_to request.referer&.include?("query") ? request.referer : root_path, method: :get, class: "back-to-profile-btn" do %>
     <i class="fa-solid fa-arrow-left"></i>
   <% end %>
 
