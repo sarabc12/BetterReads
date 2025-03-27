@@ -9,6 +9,7 @@
 #   end
 
 Booklist.destroy_all
+Bookread.destroy_all
 Book.destroy_all
 List.destroy_all
 User.destroy_all
